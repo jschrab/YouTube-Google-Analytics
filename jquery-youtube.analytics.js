@@ -88,12 +88,10 @@ function onYouTubeIframeAPIReady() {
 function onPlayerStateChange(event) {
 	// if the video begins playing, send the event
 	if (event.data == YT.PlayerState.PLAYING) {
-		console.log(['_trackEvent', 'Videos', 'Play', videoHash[event.target.a.id].videoTitle ]);
 		if((typeof(_gaq) == typeof(Function))) _gaq.push(['_trackEvent', 'Videos', 'Play', videoHash[event.target.a.id].videoTitle ]);
 	}
 	// if the video ends, send the event
 	if (event.data == YT.PlayerState.ENDED) {
-		console.log(['_trackEvent', 'Videos', 'Ended', videoHash[event.target.a.id].videoTitle ]);
 		if((typeof(_gaq) == typeof(Function))) _gaq.push(['_trackEvent', 'Videos', 'Ended', videoHash[event.target.a.id].videoTitle ]);
 	}
 }
