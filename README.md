@@ -3,7 +3,7 @@ YouTube-Google-Analytics
 
 Allow for custom event tracking in Google Analytics for YouTube player actions such as Play and Ended.
 
-Original http://www.lunametrics.com/blog/2012/10/22/automatically-track-youtube-videos-events-google-analytics/
+Original http://www.lunametrics.com/blog/2012/10/22/automatically-track-youtube-videos-events-google-analytics/  
 Further enhanced by http://isitedesign.com - Alex Mueller for ISITE Design
 
 Enhancements from Alex Mueller's version:
