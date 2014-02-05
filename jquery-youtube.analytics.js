@@ -74,13 +74,15 @@ var trackYouTubeFunc = false;
 
 // when the YouTube iframe API has loaded
 function onYouTubeIframeAPIReady() {
-	// add the stateChange event handler to our list of current videos on thie page
+	// add the stateChange event handler to our list of current videos on this page
 	for(var videoID in videoHash) {
-		videoHash[videoID].videoPlayer = new YT.Player(videoID, {
-			events: {
-				'onStateChange': onPlayerStateChange
-			}
-		});
+		if(!videoHash[videoID].hasOwnProperty('videoPlayer')) {
+			videoHash[videoID].videoPlayer = new YT.Player(videoID, {
+				events: {
+					'onStateChange': onPlayerStateChange
+				}
+			});
+		}
 	}
 }
 
@@ -88,11 +90,13 @@ function onYouTubeIframeAPIReady() {
 function onPlayerStateChange(event) {
 	// if the video begins playing, send the event
 	if (event.data == YT.PlayerState.PLAYING) {
-		if((typeof(_gaq) == typeof(Function))) _gaq.push(['_trackEvent', 'Videos', 'Play', videoHash[event.target.a.id].videoTitle ]);
+		// console.log(['_trackEvent', 'Videos', 'Play', videoHash[event.target.a.id].videoTitle ]);
+		if((typeof(_gaq) == "object")) _gaq.push(['_trackEvent', 'Videos', 'Play', videoHash[event.target.a.id].videoTitle ]);
 	}
 	// if the video ends, send the event
 	if (event.data == YT.PlayerState.ENDED) {
-		if((typeof(_gaq) == typeof(Function))) _gaq.push(['_trackEvent', 'Videos', 'Ended', videoHash[event.target.a.id].videoTitle ]);
+		// console.log(['_trackEvent', 'Videos', 'Ended', videoHash[event.target.a.id].videoTitle ]);
+		if((typeof(_gaq) == "object")) _gaq.push(['_trackEvent', 'Videos', 'Ended', videoHash[event.target.a.id].videoTitle ]);
 	}
 }
 
